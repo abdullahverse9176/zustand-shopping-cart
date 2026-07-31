@@ -1,6 +1,7 @@
 import Image from "next/image";
 import ProductList from '@/app/components/ProductList'
 import Cart from '@/app/components/Cart'
+import Settings from "./components/Settings";
 
 export default function Home() {
   return (
@@ -12,7 +13,10 @@ export default function Home() {
           <ProductList />
         </div>
         <div className="w-1/2">
-          <Cart />
+          <div className="mb-4">
+            <Cart />
+          </div>
+          <Settings />
         </div>
       </div>
     </main>

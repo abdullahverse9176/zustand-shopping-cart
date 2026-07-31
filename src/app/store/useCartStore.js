@@ -8,6 +8,19 @@ export const useCartStore = create(
       cart: [],
       products: [],
       isLoading: false,
+      isDarkMode: false,
+      fontSize: 16, 
+
+      toggleTheme: () => set((state) => {
+        return { isDarkMode: !state.isDarkMode }
+      }),
+
+      increaseFontSize: () => set((state) => ({
+        fontSize: state.fontSize + 2
+      })),
+      decreaseFontSize: () => set((state) => ({
+        fontSize: state.fontSize - 2
+      })),
 
       // 2. Async Action: Products fetch karne ke liye (Interview Topic: Async Actions)
       fetchProducts: async () => {
