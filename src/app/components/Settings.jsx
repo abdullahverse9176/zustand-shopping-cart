@@ -2,12 +2,16 @@
 
 import { useThemeStore } from '@/app/store/useThemeStore'
 import { useStore } from '@/app/hooks/useStore'
+import { useFontStore } from '../store/useFontStore'
 
 export default function Settings() {
   // Safe Hydration read for theme
   const isDarkMode = useStore(useThemeStore, (state) => state.isDarkMode) ?? false
   const toggleTheme = useThemeStore((state) => state.toggleTheme)
-  
+  const increaseFontSize = useFontStore((state) => state.increaseFontSize)
+  const decreaseFontSize = useFontStore((state) => state.decreaseFontSize)
+  const font = useStore(useFontStore, (state) => state.font) ?? 16
+
   return (
     <div
       className={`p-6 rounded-lg transition-all duration-300 border shadow-md mt-5 ${
@@ -32,6 +36,15 @@ export default function Settings() {
         >
           Toggle Box Theme
         </button>
+      </div>
+
+      <p className="my-3 font-medium transition-all">
+        Font Size: {font}px
+      </p>
+
+      <div>
+        <button className='px-3 py-2 text-white bg-blue-600 mr-2' onClick={increaseFontSize}>Increase</button>
+        <button className='px-3 py-2 text-white bg-blue-600 mr-2' onClick={decreaseFontSize}>Decrease</button>
       </div>
     </div>
   )
