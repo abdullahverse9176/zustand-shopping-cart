@@ -8,12 +8,12 @@ export default function Settings() {
   const { isDarkMode, toggleTheme, increaseFontSize, decreaseFontSize, fontSize } = useCartStore()
 
   return (
-    <div 
-      className="p-6 rounded-lg transition-all duration-300"
-      style={{
-        backgroundColor: isDarkMode ? '#1e293b' : '#f8fafc',
-        color: isDarkMode ? '#f8fafc' : '#1e293b',
-      }}
+    <div
+      className={`p-6 rounded-lg transition-all duration-300 border shadow-sm ${
+        isDarkMode
+          ? 'bg-slate-800 text-slate-50 border-slate-700'
+          : 'bg-slate-50 text-slate-800 border-slate-200'
+      }`}
     >
       <h2 className="font-bold mb-4">
         UI Settings Controller

@@ -28,19 +28,35 @@ export default function ProductList() {
     fetchProducts()
   }, [])
 
-  if (isLoading) return <p style={{ padding: '10px' }}>Loading products...</p>
+  if (isLoading)
+    return (
+      <div className="p-6 text-center text-gray-500 font-medium animate-pulse">
+        Loading products...
+      </div>
+    )
 
   return (
-    <div style={{ border: '1px solid #ccc', padding: '15px', borderRadius: '8px' }}>
-      <h2>Products</h2>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '10px' }}>
+    <div className="border border-gray-200 dark:border-gray-800 p-4 rounded-lg bg-white dark:bg-gray-900 shadow-sm">
+      <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">
+        Products
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {products.map((product) => (
-          <div key={product.id} style={{ border: '1px solid #eee', padding: '10px', borderRadius: '5px' }}>
-            <h4 style={{ fontSize: '14px', margin: '5px 0' }}>{product.title.substring(0, 25)}...</h4>
-            <p style={{ fontWeight: 'bold' }}>${product.price}</p>
-            <button 
+          <div
+            key={product.id}
+            className="border border-gray-100 dark:border-gray-800 p-3 rounded-md flex flex-col justify-between bg-gray-50 dark:bg-gray-800/50 hover:shadow-md transition-shadow"
+          >
+            <div>
+              <h4 className="text-sm font-semibold my-1 text-gray-800 dark:text-gray-100 line-clamp-2">
+                {product.title.substring(0, 25)}...
+              </h4>
+              <p className="font-bold text-blue-600 dark:text-blue-400 text-sm my-1">
+                ${product.price}
+              </p>
+            </div>
+            <button
               onClick={() => addToCart(product)}
-              style={{ background: '#0070f3', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer' }}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-1.5 px-3 rounded text-xs transition-colors cursor-pointer mt-2"
             >
               Add to Cart
             </button>
