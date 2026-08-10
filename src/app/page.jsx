@@ -1,5 +1,6 @@
 import ProductList from '@/app/components/ProductList'
 import Cart from '@/app/components/Cart'
+import Settings from './components/Settings';
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
           </div>
           <div className="w-1/2">
             <Cart />
+            <Settings />
           </div>
         </div>
       </main>
