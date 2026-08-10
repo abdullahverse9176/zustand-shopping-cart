@@ -1,18 +1,32 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useCartStore } from '@/app/store/useCartStore'
 
 export default function ProductList() {
-  // Selectors ke zariye specific state extract kar rahe hain
-  const products = useCartStore((state) => state.products)
-  const isLoading = useCartStore((state) => state.isLoading)
-  const fetchProducts = useCartStore((state) => state.fetchProducts)
+  // Local state for products and loading
+  const [products, setProducts] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Zustand Store se sirf addToCart action le rahe hain
   const addToCart = useCartStore((state) => state.addToCart)
 
+  // Local fetch logic
   useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch('https://fakestoreapi.com/products?limit=6')
+        const data = await res.json()
+        setProducts(data)
+      } catch (error) {
+        console.error('Fetch error:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
     fetchProducts()
-  }, [fetchProducts])
+  }, [])
 
   if (isLoading) return <p style={{ padding: '10px' }}>Loading products...</p>
 
