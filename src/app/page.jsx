@@ -2,6 +2,7 @@ import ProductList from '@/app/components/ProductList'
 import Cart from '@/app/components/Cart'
 import Settings from './components/Settings';
 import Notes from './components/Notes';
+import IncrementButton from './components/IncrementButton';
 
 export default function Home() {
   return (
@@ -9,7 +10,9 @@ export default function Home() {
       <h1 className="text-center text-2xl md:text-3xl mb-8 font-extrabold tracking-tight text-slate-100">
         Next.js + Zustand Notes App
       </h1>
-      <Notes />
+      <IncrementButton />
+      
+      {/* <Notes /> */}
     </main>
   );
 }
